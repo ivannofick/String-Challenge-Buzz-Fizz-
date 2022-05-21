@@ -1,0 +1,24 @@
+ ReportsTo	    Members	Average_Age
+Bob Boss	        2	      24
+Daniel Smith	    1	      22
+David S	          1	      25
+Jenny Richards	  2	      31
+
+ 
+ 
+ 
+ 
+ 
+ 
+ SELECT
+  mt.ReportsTo, 
+  COUNT(mt.ReportsTo) as Members, 
+  ROUND(AVG(mt.AGe)) as Average_Age
+FROM 
+  maintable_H85WO mt
+WHERE 
+  ReportsTo is not null
+GROUP BY 
+  mt.ReportsTo
+ORDER BY 
+  mt.ReportsTo
