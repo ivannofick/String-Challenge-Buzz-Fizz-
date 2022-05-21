@@ -1,0 +1,53 @@
+Searching Challenge
+Have the function SearchingChallenge(str) take the str parameter being passed and find the longest substring that contains k unique characters, where k will be the first character from the string. The substring will start from the second position in the string because the first character will be the integer k. For example: if str is "2aabbacbaa" there are several substrings that all contain 2 unique characters, namely: ["aabba", "ac", "cb", "ba"], but your program should return "aabba" because it is the longest substring. If there are multiple longest substrings, then return the first substring encountered with the longest length. k will range from 1 to 6.
+Once your function is working, take the final output string and remove any characters (case-insensitive) from it that appear in your ChallengeToken. If the new final string is empty, return the string EMPTY.
+
+Your ChallengeToken: 51r0wouqbd2
+Examples
+Input: "3aabacbebebe"
+Output: cbebebe
+Final Output: ceee
+Input: "2aabbcbbbadef"
+Output: bbcbbb
+Final Output: c
+
+function SearchingChallenge(str) {    
+    const count = parseInt(str.slice(0,1), 10);    
+    const subjectString = str.slice(1);    
+    const len = subjectString.length;
+    let maxCount = 0;    
+    for (let i = 0; i < len; i++) {        
+        counter = 0;        
+        let holder = [];        
+        let charArray = [];        
+        for (let j = i; j < len; j++) {            
+            let char = subjectString.charAt(j);            
+            if (charArray.some(val => val === char)) {                
+                holder.push(char);                
+                counter++;                
+                if (j === len - 1) {                    
+                    if (counter > maxCount) {                        
+                        result = Array.from (holder);                    
+                    } maxCount = Math.max(counter, maxCount);                
+                } continue;            
+            } else {                
+                if (charArray.length < count) {                    
+                    counter++;                    
+                    charArray.push(char);                    
+                    holder.push(char)                    
+                    continue;                
+                } else {                    
+                    if (counter > maxCount) {                        
+                        result = Array.from(holder);                    
+                    }                    
+                    maxCount = Math.max(counter, maxCount);                    
+                    break;                
+                }            
+            }        
+        }    
+    }    
+    return result.join('');
+}
+   
+// keep this function call here 
+console.log(SearchingChallenge(readline()));
